@@ -260,6 +260,10 @@
     // Simulate adding 300 coins for referral
     coins += 300;
     updateUI();
+    
+    // Send a message via Telegram bot for the referral
+    const message = "Thank you for referring a friend! You've earned 300 Coins!";
+    sendTelegramMessage(message); // Send a message via Telegram bot
   }
 
   function processWithdraw(event) {
@@ -301,6 +305,15 @@
         alert("Withdrawal request has been sent.");
       })
       .catch(error => console.error('Error:', error));
+  }
+
+  // Get user info from Telegram WebApp API
+  if (Telegram.WebApp.initDataUnsafe.user) {
+    const user = Telegram.WebApp.initDataUnsafe.user;
+    document.getElementById("displayName").innerText = user.first_name || "User";
+    document.getElementById("profileName").innerText = user.first_name || "User";
+    document.getElementById("profileUsername").innerText = user.username ? "@" + user.username : "@username";
+    document.getElementById("profilePic").src = user.photo_url || "https://via.placeholder.com/100";
   }
 
   updateUI();
