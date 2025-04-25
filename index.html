@@ -178,9 +178,21 @@
   <div class="card centered">
     <h3 style="font-size: 20px;">Refer & Earn</h3> <!-- Increased font size -->
     <p>Share your referral link and earn <strong>300 Coins</strong> per friend!</p>
-    <input type="text" id="refLink" readonly value="https://t.me/Funcoin11_bot?start=yourusername">
-    <button onclick="copyRef()">Copy Link</button>
-    <p id="refMsg"></p>
+    function copyRef() {
+    const copyText = document.getElementById("refLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);  // For mobile devices
+    document.execCommand("copy");
+    document.getElementById("refMsg").innerText = "Copied!";
+
+    // Simulate adding 300 coins for referral
+    coins += 300;
+    updateUI();
+    
+    // Send a message via Telegram bot
+    const message = "Thank you for referring a friend! You've earned 300 Coins!";
+    sendTelegramMessage(message); // Send a message via Telegram bot
+}
   </div>
 </div>
 
