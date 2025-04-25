@@ -300,17 +300,17 @@
     updateUI();
   }
 
-  // Send message to Telegram user using the bot API
-  function sendTelegramMessage(message) {
+// Send message to Telegram user using the bot API
+function sendTelegramMessage(message) {
     const token = '7705105240:AAFCr8FrZZP7ePxWsq129hUmGNWVz8rD_uA'; // Your API token
     const chatId = '5697990319'; // Your user ID
     const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-    
+
     fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log('Message sent:', data);
-        alert("Withdrawal request has been sent.");
+        alert("Referral message has been sent.");
       })
       .catch(error => console.error('Error:', error));
   }
