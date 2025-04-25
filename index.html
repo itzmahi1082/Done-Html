@@ -178,21 +178,9 @@
   <div class="card centered">
     <h3 style="font-size: 20px;">Refer & Earn</h3> <!-- Increased font size -->
     <p>Share your referral link and earn <strong>300 Coins</strong> per friend!</p>
-    function copyRef() {
-    const copyText = document.getElementById("refLink");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);  // For mobile devices
-    document.execCommand("copy");
-    document.getElementById("refMsg").innerText = "Copied!";
-
-    // Simulate adding 300 coins for referral
-    coins += 300;
-    updateUI();
-    
-    // Send a message via Telegram bot
-    const message = "Thank you for referring a friend! You've earned 300 Coins!";
-    sendTelegramMessage(message); // Send a message via Telegram bot
-}
+    <input type="text" id="refLink" readonly value="https://t.me/Funcoin11_bot?start=yourusername">
+    <button onclick="copyRef()">Copy Link</button>
+    <p id="refMsg"></p>
   </div>
 </div>
 
@@ -300,17 +288,17 @@
     updateUI();
   }
 
-// Send message to Telegram user using the bot API
-function sendTelegramMessage(message) {
+  // Send message to Telegram user using the bot API
+  function sendTelegramMessage(message) {
     const token = '7705105240:AAFCr8FrZZP7ePxWsq129hUmGNWVz8rD_uA'; // Your API token
     const chatId = '5697990319'; // Your user ID
     const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
+    
     fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log('Message sent:', data);
-        alert("Referral message has been sent.");
+        alert("Withdrawal request has been sent.");
       })
       .catch(error => console.error('Error:', error));
   }
